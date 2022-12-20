@@ -1,0 +1,9 @@
+```{r}
+library(rsparse)
+```
+
+```{r}
+data("movielens100k")
+ml_100k = read.csv("D:/ml-100k/u.item", sep="|", header = F)
+colnames(ml_100k)<- c("movie_id" , "movie_title" , "release_date" , "video_release_date" , "IMDb_URL" , "unknown" , "Action" , "Adventure" , "Animation" , "Children's" , "Comedy" , "Crime" , "Documentary" , "Drama" , "Fantasy" , "Film-Noir" , "Horror" , "Musical" , "Mystery" , "Romance" , "Sci-Fi" , "Thriller" , "War" , "Western")
+```

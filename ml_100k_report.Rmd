@@ -1,0 +1,76 @@
+---
+title: "**【MovieLens 100K Data Analysis】**"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    df_print: paged
+---
+
+```{r include=FALSE}
+library(rsparse)
+library(recommenderlab)
+library(dplyr)
+library(plotly)
+library(Rtsne)
+load("100k.RData")
+```
+
+****
+
+## **1 Dataset**
+
+****
+
+### **u.item**
+
+```{r echo=FALSE}
+ml_100k.i.or
+```
+
+### **genres**
+
+```{r echo=FALSE}
+ml_100k.i
+```
+
+****
+
+## **2 PCA for genres**
+
+```{r echo=FALSE}
+ggplot(visualPCA_ml, aes(x=PC1, y=PC2, label=category.i))+geom_point() +geom_text(hjust=0, vjust=0)
+```
+
+Classified those items into three groups, we color the points with the three primary colors. The method take the percentage of these three group as probability, and tuning the value with the CMYK coloring. Furthermore, the groups means a little information, and it is displayed on the PCA map.
+
+* Group1: popular or more action movies.
+  + Action
+  + Thriller
+  + Sci-Fi
+  + Adventure
+* Group2: family movies.
+  + Animation
+  + Comedy
+  + Musical
+  * Children's
+  + Fantacy
+* Group 3: otherwise.
+
+****
+
+## **3 Visualization**{.tabset}
+
+### **PCA**
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+plot_ly(visualPCA_ml.jc, x = ~PC1, y = ~PC2, text =movie_name, marker = list(color = ml_colorhex$hex))
+```
+
+****
+
+### **t-SNE**
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+plot_ly(visualtSNE_ml.jc, x = ~V1, y = ~V2, text =movie_name, marker = list(color = ml_colorhex$hex))
+```
